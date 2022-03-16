@@ -101,8 +101,9 @@
 			children = (
 				0FC89FED27E216260024ECA6 /* AppDelegate.swift */,
 				0FC89FEF27E216260024ECA6 /* SceneDelegate.swift */,
-				0FC89FF127E216260024ECA6 /* ViewController.swift */,
-				0FC89FF327E216260024ECA6 /* Main.storyboard */,
+				0FC8A01F27E28C280024ECA6 /* Model */,
+				0FC8A02027E28C4D0024ECA6 /* View */,
+				0FC8A02127E28C530024ECA6 /* Controller */,
 				0FC89FF627E216280024ECA6 /* Assets.xcassets */,
 				0FC89FF827E216280024ECA6 /* LaunchScreen.storyboard */,
 				0FC89FFB27E216280024ECA6 /* Info.plist */,
@@ -125,6 +126,29 @@
 				0FC8A01027E216280024ECA6 /* MarvelAPIUITestsLaunchTests.swift */,
 			);
 			path = MarvelAPIUITests;
+			sourceTree = "<group>";
+		};
+		0FC8A01F27E28C280024ECA6 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		0FC8A02027E28C4D0024ECA6 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				0FC89FF327E216260024ECA6 /* Main.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		0FC8A02127E28C530024ECA6 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				0FC89FF127E216260024ECA6 /* ViewController.swift */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
