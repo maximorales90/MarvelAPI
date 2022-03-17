@@ -16,12 +16,11 @@
 		0FC8A00527E216280024ECA6 /* MarvelAPITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC8A00427E216280024ECA6 /* MarvelAPITests.swift */; };
 		0FC8A00F27E216280024ECA6 /* MarvelAPIUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC8A00E27E216280024ECA6 /* MarvelAPIUITests.swift */; };
 		0FC8A01127E216280024ECA6 /* MarvelAPIUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC8A01027E216280024ECA6 /* MarvelAPIUITestsLaunchTests.swift */; };
-		0FC8A02427E2A9430024ECA6 /* PersonajesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC8A02227E2A9430024ECA6 /* PersonajesCell.swift */; };
-		0FC8A02527E2A9440024ECA6 /* PersonajesCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0FC8A02327E2A9430024ECA6 /* PersonajesCell.xib */; };
 		0FDA9EC227E38C01000946EB /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FDA9EC127E38C01000946EB /* WebViewController.swift */; };
 		0FDA9EC427E38D4E000946EB /* Personajes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FDA9EC327E38D4E000946EB /* Personajes.swift */; };
 		0FDA9EC627E38E04000946EB /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FDA9EC527E38E04000946EB /* APIManager.swift */; };
 		0FDA9EC827E39172000946EB /* Credenciales.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FDA9EC727E39172000946EB /* Credenciales.swift */; };
+		0FDA9ECC27E3B3FE000946EB /* PersonajesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FDA9ECB27E3B3FE000946EB /* PersonajesCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,12 +54,11 @@
 		0FC8A00A27E216280024ECA6 /* MarvelAPIUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MarvelAPIUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0FC8A00E27E216280024ECA6 /* MarvelAPIUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarvelAPIUITests.swift; sourceTree = "<group>"; };
 		0FC8A01027E216280024ECA6 /* MarvelAPIUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarvelAPIUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		0FC8A02227E2A9430024ECA6 /* PersonajesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonajesCell.swift; sourceTree = "<group>"; };
-		0FC8A02327E2A9430024ECA6 /* PersonajesCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PersonajesCell.xib; sourceTree = "<group>"; };
 		0FDA9EC127E38C01000946EB /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		0FDA9EC327E38D4E000946EB /* Personajes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Personajes.swift; sourceTree = "<group>"; };
 		0FDA9EC527E38E04000946EB /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
 		0FDA9EC727E39172000946EB /* Credenciales.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Credenciales.swift; sourceTree = "<group>"; };
+		0FDA9ECB27E3B3FE000946EB /* PersonajesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonajesCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -154,8 +152,7 @@
 			isa = PBXGroup;
 			children = (
 				0FC89FF327E216260024ECA6 /* Main.storyboard */,
-				0FC8A02227E2A9430024ECA6 /* PersonajesCell.swift */,
-				0FC8A02327E2A9430024ECA6 /* PersonajesCell.xib */,
+				0FDA9ECB27E3B3FE000946EB /* PersonajesCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -274,7 +271,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				0FC89FFA27E216280024ECA6 /* LaunchScreen.storyboard in Resources */,
-				0FC8A02527E2A9440024ECA6 /* PersonajesCell.xib in Resources */,
 				0FC89FF727E216280024ECA6 /* Assets.xcassets in Resources */,
 				0FC89FF527E216260024ECA6 /* Main.storyboard in Resources */,
 			);
@@ -304,10 +300,10 @@
 				0FC89FF227E216260024ECA6 /* PersonajesViewController.swift in Sources */,
 				0FDA9EC427E38D4E000946EB /* Personajes.swift in Sources */,
 				0FDA9EC227E38C01000946EB /* WebViewController.swift in Sources */,
-				0FC8A02427E2A9430024ECA6 /* PersonajesCell.swift in Sources */,
 				0FC89FEE27E216260024ECA6 /* AppDelegate.swift in Sources */,
 				0FC89FF027E216260024ECA6 /* SceneDelegate.swift in Sources */,
 				0FDA9EC627E38E04000946EB /* APIManager.swift in Sources */,
+				0FDA9ECC27E3B3FE000946EB /* PersonajesCell.swift in Sources */,
 				0FDA9EC827E39172000946EB /* Credenciales.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

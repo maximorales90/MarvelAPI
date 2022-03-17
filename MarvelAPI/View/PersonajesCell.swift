@@ -4,8 +4,8 @@
 //
 //  Created by Maximiliano Morales on 16/03/2022.
 //
-
 import UIKit
+import Foundation
 
 class PersonsajesCellViewModel {
     let title: String
@@ -27,7 +27,7 @@ class PersonsajesCellViewModel {
 
 class PersonajesCell: UITableViewCell {
     
-    let identifier = "PersonajesCell"
+    static let identifier = "PersonajesCell"
     
     let personajeTitleLabel: UILabel = {
         let label = UILabel()
@@ -61,6 +61,8 @@ class PersonajesCell: UITableViewCell {
     
     override func layoutSubviews() {
         super.layoutSubviews()
+        
+        personajeTitleLabel.frame = CGRect(x: 10, y: 0, width: contentView.frame.size.width-120 , height: contentView.frame.size.height/2)
     }
     
     override func prepareForReuse() {
@@ -76,6 +78,6 @@ class PersonajesCell: UITableViewCell {
         }
         else{
 //            fetch
+        }
     }
-}
 }

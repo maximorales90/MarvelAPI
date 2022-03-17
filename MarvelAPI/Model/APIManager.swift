@@ -36,7 +36,7 @@ class APIManager {
                 let personajes = try JSONDecoder().decode(APIPersonajesResultado.self, from: APIData)
                 
                 DispatchQueue.main.async {
-                    self.fetchedPersonajes.append(contentsOf: personajes.data.results)
+                    self.fetchedPersonajes = personajes.data.results
                     print(personajes)
                 }
             }
@@ -56,5 +56,33 @@ class APIManager {
         .joined()
     }
     
+    func extractImage(data: [String: String])->URL{
+        
+        let path = data["path"] ?? ""
+        print(path)
+        let ext = data["extension"] ?? ""
+        print(ext)
+        
+        return URL(string: "\(path).\(ext)")!
+
+    }
+                   
+    func extractURL(data: [String: String])->URL{
+                       
+        let url = data["url"] ?? ""
+        print(url)
+                       
+        return URL(string: url)!
+
+    }
+    
+    func extractURLType(data: [String: String])->String{
+                       
+        let type = data["type"] ?? ""
+        print(type)
+                       
+        return type.capitalized
+
+    }
 
 }
