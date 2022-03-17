@@ -37,6 +37,7 @@ class APIManager {
                 
                 DispatchQueue.main.async {
                     self.fetchedPersonajes.append(contentsOf: personajes.data.results)
+                    print(personajes)
                 }
             }
             catch{
