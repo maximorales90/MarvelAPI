@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		0FC89FEE27E216260024ECA6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC89FED27E216260024ECA6 /* AppDelegate.swift */; };
 		0FC89FF027E216260024ECA6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC89FEF27E216260024ECA6 /* SceneDelegate.swift */; };
-		0FC89FF227E216260024ECA6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC89FF127E216260024ECA6 /* ViewController.swift */; };
+		0FC89FF227E216260024ECA6 /* PersonajesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC89FF127E216260024ECA6 /* PersonajesViewController.swift */; };
 		0FC89FF527E216260024ECA6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0FC89FF327E216260024ECA6 /* Main.storyboard */; };
 		0FC89FF727E216280024ECA6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0FC89FF627E216280024ECA6 /* Assets.xcassets */; };
 		0FC89FFA27E216280024ECA6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0FC89FF827E216280024ECA6 /* LaunchScreen.storyboard */; };
@@ -18,6 +18,10 @@
 		0FC8A01127E216280024ECA6 /* MarvelAPIUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC8A01027E216280024ECA6 /* MarvelAPIUITestsLaunchTests.swift */; };
 		0FC8A02427E2A9430024ECA6 /* PersonajesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC8A02227E2A9430024ECA6 /* PersonajesCell.swift */; };
 		0FC8A02527E2A9440024ECA6 /* PersonajesCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0FC8A02327E2A9430024ECA6 /* PersonajesCell.xib */; };
+		0FDA9EC227E38C01000946EB /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FDA9EC127E38C01000946EB /* WebViewController.swift */; };
+		0FDA9EC427E38D4E000946EB /* Personajes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FDA9EC327E38D4E000946EB /* Personajes.swift */; };
+		0FDA9EC627E38E04000946EB /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FDA9EC527E38E04000946EB /* APIManager.swift */; };
+		0FDA9EC827E39172000946EB /* Credenciales.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FDA9EC727E39172000946EB /* Credenciales.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,7 +45,7 @@
 		0FC89FEA27E216260024ECA6 /* MarvelAPI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MarvelAPI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0FC89FED27E216260024ECA6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0FC89FEF27E216260024ECA6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		0FC89FF127E216260024ECA6 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		0FC89FF127E216260024ECA6 /* PersonajesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonajesViewController.swift; sourceTree = "<group>"; };
 		0FC89FF427E216260024ECA6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		0FC89FF627E216280024ECA6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0FC89FF927E216280024ECA6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -53,6 +57,10 @@
 		0FC8A01027E216280024ECA6 /* MarvelAPIUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarvelAPIUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		0FC8A02227E2A9430024ECA6 /* PersonajesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonajesCell.swift; sourceTree = "<group>"; };
 		0FC8A02327E2A9430024ECA6 /* PersonajesCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PersonajesCell.xib; sourceTree = "<group>"; };
+		0FDA9EC127E38C01000946EB /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
+		0FDA9EC327E38D4E000946EB /* Personajes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Personajes.swift; sourceTree = "<group>"; };
+		0FDA9EC527E38E04000946EB /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
+		0FDA9EC727E39172000946EB /* Credenciales.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Credenciales.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +113,7 @@
 			children = (
 				0FC89FED27E216260024ECA6 /* AppDelegate.swift */,
 				0FC89FEF27E216260024ECA6 /* SceneDelegate.swift */,
+				0FDA9EC727E39172000946EB /* Credenciales.swift */,
 				0FC8A01F27E28C280024ECA6 /* Model */,
 				0FC8A02027E28C4D0024ECA6 /* View */,
 				0FC8A02127E28C530024ECA6 /* Controller */,
@@ -135,6 +144,8 @@
 		0FC8A01F27E28C280024ECA6 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				0FDA9EC327E38D4E000946EB /* Personajes.swift */,
+				0FDA9EC527E38E04000946EB /* APIManager.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -152,7 +163,8 @@
 		0FC8A02127E28C530024ECA6 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				0FC89FF127E216260024ECA6 /* ViewController.swift */,
+				0FC89FF127E216260024ECA6 /* PersonajesViewController.swift */,
+				0FDA9EC127E38C01000946EB /* WebViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -289,10 +301,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0FC89FF227E216260024ECA6 /* ViewController.swift in Sources */,
+				0FC89FF227E216260024ECA6 /* PersonajesViewController.swift in Sources */,
+				0FDA9EC427E38D4E000946EB /* Personajes.swift in Sources */,
+				0FDA9EC227E38C01000946EB /* WebViewController.swift in Sources */,
 				0FC8A02427E2A9430024ECA6 /* PersonajesCell.swift in Sources */,
 				0FC89FEE27E216260024ECA6 /* AppDelegate.swift in Sources */,
 				0FC89FF027E216260024ECA6 /* SceneDelegate.swift in Sources */,
+				0FDA9EC627E38E04000946EB /* APIManager.swift in Sources */,
+				0FDA9EC827E39172000946EB /* Credenciales.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class PersonajesViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,4 +18,6 @@ class ViewController: UIViewController {
 
 
 }
+
+
 
