@@ -6,13 +6,14 @@
 //
 import Foundation
 import UIKit
+import SafariServices
 
 class PersonajesViewController: UIViewController, UITableViewDelegate {
-    
-    //var homeData = APIManager()
+        
     var homeData = APIManager()
-    
+    var personajes = [Personajes]()
     var viewModels = [PersonsajesCellViewModel]()
+
     
     let tableView: UITableView = {
         let table = UITableView()
@@ -31,6 +32,7 @@ class PersonajesViewController: UIViewController, UITableViewDelegate {
         APIManager.shared.fetchPersonajes{ [weak self] result in
             switch result {
             case .success(let personajes):
+                self?.personajes = personajes
                 self?.viewModels = personajes.map({
                     PersonsajesCellViewModel(
                         title: $0.name,
@@ -46,9 +48,7 @@ class PersonajesViewController: UIViewController, UITableViewDelegate {
             }
             
         }
-        print(homeData.fetchedPersonajes)
-        
-
+        print(APIManager.shared.fetchedPersonajes)
         
         DispatchQueue.main.async {
             self.tableView.reloadData()
@@ -78,10 +78,17 @@ extension PersonajesViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        let personaje = personajes[indexPath.row]
+        for dato in personaje.urls{
+            let url = APIManager.shared.extractURL(data: dato)
+            let vc = SFSafariViewController(url: url)
+            present(vc, animated: true)
+            return
+        }
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 100
+        return 150
     }
 }
 

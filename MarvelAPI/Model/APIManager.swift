@@ -78,14 +78,4 @@ class APIManager {
         return URL(string: url)!
 
     }
-    
-    func extractURLType(data: [String: String])->String{
-                       
-        let type = data["type"] ?? ""
-        print(type)
-                       
-        return type.capitalized
-
-    }
-
 }

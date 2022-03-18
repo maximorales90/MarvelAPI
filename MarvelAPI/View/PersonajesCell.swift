@@ -11,7 +11,7 @@ class PersonsajesCellViewModel {
     let title: String
     let subtitle: String
     let imageURL: URL?
-    let imageData: Data? = nil
+    var imageData: Data? = nil
     
     init(
         title: String,
@@ -31,19 +31,24 @@ class PersonajesCell: UITableViewCell {
     
     let personajeTitleLabel: UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 25, weight: .medium)
+        label.numberOfLines = 0
+        label.font = .systemFont(ofSize: 18, weight: .bold)
         return label
     }()
     
     let personajeSubtitleLabel: UILabel = {
         let subtitle = UILabel()
-        subtitle.font = .systemFont(ofSize: 18, weight: .medium)
+        subtitle.numberOfLines = 0
+        subtitle.font = .systemFont(ofSize: 14, weight: .light)
         return subtitle
     }()
     
     let personajeImageView: UIImageView = {
        let imageView = UIImageView()
-        imageView.backgroundColor = .systemGray
+        imageView.layer.cornerRadius = 8
+        imageView.layer.masksToBounds = true
+        imageView.clipsToBounds = true
+        imageView.backgroundColor = .secondarySystemBackground
         imageView.contentMode = .scaleAspectFill
         return imageView
     }()
@@ -63,11 +68,18 @@ class PersonajesCell: UITableViewCell {
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        personajeTitleLabel.frame = CGRect(x: 10, y: 0, width: contentView.frame.size.width-120 , height: contentView.frame.size.height/2)
+        personajeTitleLabel.frame = CGRect(x: 10, y: 0, width: contentView.frame.size.width-170 , height: 60)
+        personajeSubtitleLabel.frame = CGRect(x: 10, y: 50, width: contentView.frame.size.width-170 , height: contentView.frame.size.height/2)
+        personajeImageView.frame = CGRect(x: contentView.frame.size.width-160, y: 5, width: 150 , height: contentView.frame.size.height-10)
+
+        
     }
     
     override func prepareForReuse() {
         super.prepareForReuse()
+        personajeTitleLabel.text = nil
+        personajeSubtitleLabel.text = nil
+        personajeImageView.image = nil
     }
     
     func configure(with viewModel: PersonsajesCellViewModel ){
@@ -77,8 +89,16 @@ class PersonajesCell: UITableViewCell {
         if let data = viewModel.imageData {
             personajeImageView.image = UIImage(data: data)
         }
-        else{
-//            fetch
+        else if let url = viewModel.imageURL {
+            URLSession.shared.dataTask(with: url) { [weak self] data, response, error in
+                guard let data = data, error == nil else{
+                    return
+                }
+                viewModel.imageData = data
+                DispatchQueue.main.async {
+                    self?.personajeImageView.image = UIImage(data: data)
+                }
+            } .resume()
         }
     }
 }
