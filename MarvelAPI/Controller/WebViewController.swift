@@ -6,12 +6,20 @@
 //
 
 import UIKit
+import WebKit
 
 class WebViewController: UIViewController {
+    
+    @IBOutlet weak var navigationBar: UINavigationItem!
+    @IBOutlet weak var webView: WKWebView!
+    
+    var url : URL!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        let request = URLRequest(url: url!)
+        webView.load(request)
     }
 
 }

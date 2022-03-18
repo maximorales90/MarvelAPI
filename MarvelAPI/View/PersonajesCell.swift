@@ -72,14 +72,6 @@ class PersonajesCell: UITableViewCell {
         personajeTitleLabel.frame = CGRect(x: 184, y: 0, width: contentView.frame.size.width-196 , height: 60)
         
         personajeSubtitleLabel.frame = CGRect(x: 184, y: 50, width: contentView.frame.size.width-196 , height: contentView.frame.size.height/2)
-
-
-
-
-//        personajeTitleLabel.frame = CGRect(x: 10, y: 0, width: contentView.frame.size.width-170 , height: 60)
-//        personajeSubtitleLabel.frame = CGRect(x: 10, y: 50, width: contentView.frame.size.width-170 , height: contentView.frame.size.height/2)
-//        personajeImageView.frame = CGRect(x: contentView.frame.size.width-160, y: 5, width: 150 , height: contentView.frame.size.height-10)
-
         
     }
     

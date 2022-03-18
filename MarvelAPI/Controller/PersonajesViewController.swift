@@ -6,13 +6,13 @@
 //
 import Foundation
 import UIKit
-import SafariServices
 
 class PersonajesViewController: UIViewController, UITableViewDelegate {
         
     var homeData = APIManager()
     var personajes = [Personajes]()
     var viewModels = [PersonsajesCellViewModel]()
+    var personajeURL : URL!
 
     
     let tableView: UITableView = {
@@ -23,7 +23,7 @@ class PersonajesViewController: UIViewController, UITableViewDelegate {
         
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Personajes de Marvel"
+        title = "Marvel"
         view.addSubview(tableView)
         tableView.delegate = self
         tableView.dataSource = self
@@ -61,6 +61,13 @@ class PersonajesViewController: UIViewController, UITableViewDelegate {
         super.viewDidLayoutSubviews()
         tableView.frame = view.bounds
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "gotoWebView" {
+            let personajeWebView = segue.destination as! WebViewController
+            personajeWebView.url = personajeURL
+        }
+    }
 }
 
 extension PersonajesViewController: UITableViewDataSource {
@@ -81,9 +88,8 @@ extension PersonajesViewController: UITableViewDataSource {
         tableView.deselectRow(at: indexPath, animated: true)
         let personaje = personajes[indexPath.row]
         for dato in personaje.urls{
-            let url = APIManager.shared.extractURL(data: dato)
-            let vc = SFSafariViewController(url: url)
-            present(vc, animated: true)
+            personajeURL = APIManager.shared.extractURL(data: dato)
+            self.performSegue(withIdentifier: "gotoWebView", sender: self)
             return
         }
     }
@@ -91,6 +97,7 @@ extension PersonajesViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 162
     }
+    
 }
 
 
