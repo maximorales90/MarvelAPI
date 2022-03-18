@@ -9,8 +9,8 @@ import UIKit
 
 class PersonajesViewController: UIViewController, UITableViewDelegate {
     
+    //var homeData = APIManager()
     var homeData = APIManager()
-    
     
     var viewModels = [PersonsajesCellViewModel]()
     
@@ -28,14 +28,27 @@ class PersonajesViewController: UIViewController, UITableViewDelegate {
         tableView.dataSource = self
         view.backgroundColor = .systemBackground
         
-        homeData.fetchPersonajes()
+        APIManager.shared.fetchPersonajes{ [weak self] result in
+            switch result {
+            case .success(let personajes):
+                self?.viewModels = personajes.map({
+                    PersonsajesCellViewModel(
+                        title: $0.name,
+                        subtitle: $0.description,
+                        imageURL: APIManager.shared.extractImage(data: $0.thumbnail)
+                        )
+                })
+                DispatchQueue.main.async {
+                    self?.tableView.reloadData()
+                }
+            case .failure(let error):
+                print(error)
+            }
+            
+        }
+        print(homeData.fetchedPersonajes)
         
-        self.viewModels = homeData.fetchedPersonajes.map({
-            PersonsajesCellViewModel(
-                title: $0.name,
-                subtitle: $0.description,
-                imageURL:homeData.extractImage(data: $0.thumbnail))
-        })
+
         
         DispatchQueue.main.async {
             self.tableView.reloadData()
@@ -67,7 +80,7 @@ extension PersonajesViewController: UITableViewDataSource {
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
-    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 100
     }
 }

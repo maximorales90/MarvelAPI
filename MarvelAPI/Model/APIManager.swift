@@ -7,41 +7,44 @@
 
 import Foundation
 import CryptoKit
+import UIKit
 
 class APIManager {
     
+    static let shared = APIManager()
+    
     var fetchedPersonajes: [Personajes] = []
     var offset: Int = 0
+       
 
-   
-    func fetchPersonajes(){
+    func fetchPersonajes(completion: @escaping (Result<[Personajes],Error>) -> Void){
         
         let ts = String(Date().timeIntervalSince1970)
         let hash = MD5(data: "\(ts)\(privateKey)\(publicKey)")
         let url = "https://gateway.marvel.com:443/v1/public/characters?limit=20&offset=\(offset)&ts=\(ts)&apikey=\(publicKey)&hash=\(hash)"
     
-        let session = URLSession(configuration: .default)
+        let task = URLSession(configuration: .default)
         
-        session.dataTask(with: URL(string: url)!){ (data, response, err) in
+        task.dataTask(with: URL(string: url)!){ (data, response, err) in
             if let error = err{
+                completion(.failure(error))
                 print(error.localizedDescription)
                 return
             }
-            
-            guard let APIData = data else{
-                print("No hay datos")
-                return
-            }
+            else if let APIData = data{
+
             do{
                 let personajes = try JSONDecoder().decode(APIPersonajesResultado.self, from: APIData)
+                print("Personajes:\(personajes.data.count) ")
+                print(personajes.data.results)
+
+                completion(.success(personajes.data.results))
                 
-                DispatchQueue.main.async {
-                    self.fetchedPersonajes = personajes.data.results
-                    print(personajes)
-                }
             }
             catch{
+                completion(.failure(error))
                 print(error.localizedDescription)
+                }
             }
         }
         .resume()

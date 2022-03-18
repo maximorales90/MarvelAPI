@@ -31,13 +31,13 @@ class PersonajesCell: UITableViewCell {
     
     let personajeTitleLabel: UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 25, weight: .regular)
+        label.font = .systemFont(ofSize: 25, weight: .medium)
         return label
     }()
     
     let personajeSubtitleLabel: UILabel = {
         let subtitle = UILabel()
-        subtitle.font = .systemFont(ofSize: 18, weight: .regular)
+        subtitle.font = .systemFont(ofSize: 18, weight: .medium)
         return subtitle
     }()
     
@@ -50,9 +50,10 @@ class PersonajesCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        contentView.addSubview(personajeImageView)
         contentView.addSubview(personajeTitleLabel)
         contentView.addSubview(personajeSubtitleLabel)
+        contentView.addSubview(personajeImageView)
+
     }
     
     required init?(coder: NSCoder) {
