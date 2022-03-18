@@ -27,6 +27,7 @@ class PersonajesViewController: UIViewController, UITableViewDelegate {
         view.addSubview(tableView)
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.separatorStyle = .none
         view.backgroundColor = .systemBackground
         
         APIManager.shared.fetchPersonajes{ [weak self] result in
@@ -88,7 +89,7 @@ extension PersonajesViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 150
+        return 162
     }
 }
 

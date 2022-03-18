@@ -38,8 +38,8 @@ class PersonajesCell: UITableViewCell {
     
     let personajeSubtitleLabel: UILabel = {
         let subtitle = UILabel()
-        subtitle.numberOfLines = 0
-        subtitle.font = .systemFont(ofSize: 14, weight: .light)
+        subtitle.numberOfLines = 4
+        subtitle.font = .systemFont(ofSize: 12, weight: .light)
         return subtitle
     }()
     
@@ -67,10 +67,18 @@ class PersonajesCell: UITableViewCell {
     
     override func layoutSubviews() {
         super.layoutSubviews()
+
+        personajeImageView.frame = CGRect(x: 15, y: 6, width: 150 , height: 150)
+        personajeTitleLabel.frame = CGRect(x: 184, y: 0, width: contentView.frame.size.width-196 , height: 60)
         
-        personajeTitleLabel.frame = CGRect(x: 10, y: 0, width: contentView.frame.size.width-170 , height: 60)
-        personajeSubtitleLabel.frame = CGRect(x: 10, y: 50, width: contentView.frame.size.width-170 , height: contentView.frame.size.height/2)
-        personajeImageView.frame = CGRect(x: contentView.frame.size.width-160, y: 5, width: 150 , height: contentView.frame.size.height-10)
+        personajeSubtitleLabel.frame = CGRect(x: 184, y: 50, width: contentView.frame.size.width-196 , height: contentView.frame.size.height/2)
+
+
+
+
+//        personajeTitleLabel.frame = CGRect(x: 10, y: 0, width: contentView.frame.size.width-170 , height: 60)
+//        personajeSubtitleLabel.frame = CGRect(x: 10, y: 50, width: contentView.frame.size.width-170 , height: contentView.frame.size.height/2)
+//        personajeImageView.frame = CGRect(x: contentView.frame.size.width-160, y: 5, width: 150 , height: contentView.frame.size.height-10)
 
         
     }
