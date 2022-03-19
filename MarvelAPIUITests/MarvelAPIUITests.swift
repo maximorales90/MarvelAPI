@@ -22,13 +22,18 @@ class MarvelAPIUITests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
-    func testExample() throws {
+    func testHomeUser() throws {
         // UI tests must launch the application that they test.
-        let app = XCUIApplication()
-        app.launch()
-
         // Use recording to get started writing UI tests.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
+        
+        let app = XCUIApplication()
+        app.launch()
+        
+        //Podemos agregar UITest para realizar un análisis de la aplicación usando el recording una vez lanzada la APP grabando los movimientos de usuario reproduciendolo hasta encontrar un Bug.
+        //Sin embargo, como tenemos 3000 llamadas a la API de Marvel por día al generar este tipo de test se llega rápido a ese número generando demora en la app.
+        //Por ese motivo no se agregaron los test visuales por el límite de llamadas a la API y porque se realizaron 3 aplicaciones.
+
     }
 
     func testLaunchPerformance() throws {
