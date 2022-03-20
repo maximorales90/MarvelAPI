@@ -27,8 +27,8 @@ class MarvelAPITests: XCTestCase {
         APIManager.init().fetchPersonajes(urltest: url, testActive: true, completion: { personajesData, jsonData, error in
             let jsonDecoder = JSONDecoder()
             self.errorModel = try? jsonDecoder.decode(ErrorModel.self, from: jsonData!)
-            XCTAssertEqual(self.errorModel?.message, "La API Key no es valida.")
-            XCTAssertEqual(self.errorModel?.code, "FallaCredenciales")
+            XCTAssertEqual(self.errorModel?.message, "The passed API key is invalid.")
+            XCTAssertEqual(self.errorModel?.code, "InvalidCredentials")
             expectation.fulfill()
         })
         waitForExpectations(timeout: 5, handler: nil)
@@ -36,13 +36,13 @@ class MarvelAPITests: XCTestCase {
     
     //MARK: Test API Lista de Personajes con parametros Hash Invalidos y retorna Error
     func testPersonajesWithInvalidHashParametersReturnsError() {
-        let expectation = self.expectation(description: "invalidHash")
+        let expectation = self.expectation(description: "invalid")
         let url = "\(baseURL)characters?ts=22222&apikey=asdasldjlakjfqakhdqdq344r"
         APIManager.init().fetchPersonajes(urltest: url, testActive: true, completion: { personajesData, jsonData, error in
             let jsonDecoder = JSONDecoder()
             self.errorModel = try? jsonDecoder.decode(ErrorModel.self, from: jsonData!)
-            XCTAssertEqual(self.errorModel?.message, "La API Key no es valida.")
-            XCTAssertEqual(self.errorModel?.code, "FallaCredenciales")
+            XCTAssertEqual(self.errorModel?.message, "The passed API key is invalid.")
+            XCTAssertEqual(self.errorModel?.code, "InvalidCredentials")
             expectation.fulfill()
         })
         waitForExpectations(timeout: 5, handler: nil)
@@ -57,8 +57,8 @@ class MarvelAPITests: XCTestCase {
         APIManager.init().fetchPersonajes(urltest: url, testActive: true, completion: { personajesData, jsonData, error in
             let jsonDecoder = JSONDecoder()
             self.errorModel = try? jsonDecoder.decode(ErrorModel.self, from: jsonData!)
-            XCTAssertEqual(self.errorModel?.message, "Debe proporcionar un TimeStamp.")
-            XCTAssertEqual(self.errorModel?.code, "FaltaParametro")
+            XCTAssertEqual(self.errorModel?.message, "You must provide a timestamp.")
+            XCTAssertEqual(self.errorModel?.code, "MissingParameter")
             expectation.fulfill()
         })
         waitForExpectations(timeout: 5, handler: nil)
