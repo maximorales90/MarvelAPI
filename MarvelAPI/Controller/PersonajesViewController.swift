@@ -29,7 +29,7 @@ class PersonajesViewController: UIViewController, UITableViewDelegate {
         tableView.separatorStyle = .none
         view.backgroundColor = .systemBackground
         
-        homeData.fetchPersonajes(urltest: "", testActive: false, completion: {personajesData, jsonData, error in
+        homeData.fetchPersonajes(urltest: "test", testActive: false, completion: {personajesData, jsonData, error in
             self.personajes = personajesData
             self.viewModels = self.personajes.map({
                 PersonsajesCellViewModel(

@@ -16,7 +16,7 @@ class APIManager {
 
     func fetchPersonajes(urltest : String,testActive: Bool,completion:@escaping (_ personajesData: [Personajes], _ jsonData: Data? , _ error:Error?)->()){
         
-        let url: String
+        var url: String
         
         if testActive {
             url = urltest
@@ -30,7 +30,7 @@ class APIManager {
         
         task.dataTask(with: URL(string: url)!){ (data, response, err) in
             if let error = err{
-                //completion(nil,error)
+                completion([],data,error)
                 print(error.localizedDescription)
                 return
             }
@@ -46,7 +46,7 @@ class APIManager {
                 }
             }
             catch{
-                //completion(nil,error)
+                completion([],data,error)
                 print(error.localizedDescription)
                 }
             }
