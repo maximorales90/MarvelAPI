@@ -9,6 +9,7 @@ import Foundation
 
 struct APIPersonajesResultado: Codable {
     var data: APIPersonajes
+    var status: String
 }
 
 struct APIPersonajes: Codable {

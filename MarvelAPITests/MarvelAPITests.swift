@@ -6,31 +6,89 @@
 //
 
 import XCTest
+import CryptoKit
 @testable import MarvelAPI
 
 class MarvelAPITests: XCTestCase {
 
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
+    var testModel : APIPersonajesResultado?
+    var errorModel : ErrorModel?
 
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
+    private var privateKey = "4a713e705a83dfb7feebb80f8390cdfd7b085ff5"
+    private var publicKey = "62e163c483a7ebc127ae82380ee69b15"
+    private var baseURL = "https://gateway.marvel.com:443/v1/public/"
 
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        // Any test you write for XCTest can be annotated as throws and async.
-        // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
-        // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
+    
+    
+    //MARK: Test API Lista de Personajes cuando es Empty String y retorna Error
+    func testPersonajesWithEmptyStringReturnsError() {
+        let expectation = self.expectation(description: "emptyString")
+        let url = "\(baseURL)characters?ts=&apikey=&hash="
+        APIManager.init().fetchPersonajes(urltest: url, testActive: true, completion: { personajesData, jsonData, error in
+            let jsonDecoder = JSONDecoder()
+            self.errorModel = try? jsonDecoder.decode(ErrorModel.self, from: jsonData!)
+            XCTAssertEqual(self.errorModel?.message, "La API Key no es valida.")
+            XCTAssertEqual(self.errorModel?.code, "FallaCredenciales")
+            expectation.fulfill()
+        })
+        waitForExpectations(timeout: 5, handler: nil)
     }
-
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
+    
+    //MARK: Test API Lista de Personajes con parametros Hash Invalidos y retorna Error
+    func testPersonajesWithInvalidHashParametersReturnsError() {
+        let expectation = self.expectation(description: "invalidHash")
+        let url = "\(baseURL)characters?ts=22222&apikey=asdasldjlakjfqakhdqdq344r"
+        APIManager.init().fetchPersonajes(urltest: url, testActive: true, completion: { personajesData, jsonData, error in
+            let jsonDecoder = JSONDecoder()
+            self.errorModel = try? jsonDecoder.decode(ErrorModel.self, from: jsonData!)
+            XCTAssertEqual(self.errorModel?.message, "La API Key no es valida.")
+            XCTAssertEqual(self.errorModel?.code, "FallaCredenciales")
+            expectation.fulfill()
+        })
+        waitForExpectations(timeout: 5, handler: nil)
+    }
+    
+    //MARK: Test API Lista de Personajes sin TimeStamp y retorna Error
+    func testPersonajesWithMissingtsReturnsError() {
+        let expectation = self.expectation(description: "missedTimeStamp")
+        let ts = String(Int(Date().timeIntervalSinceNow))
+        let hash = MD5(data: "\(ts)\(privateKey)\(publicKey)")
+        let url = "\(baseURL)characters?apikey=\(publicKey)&hash=\(hash)"
+        APIManager.init().fetchPersonajes(urltest: url, testActive: true, completion: { personajesData, jsonData, error in
+            let jsonDecoder = JSONDecoder()
+            self.errorModel = try? jsonDecoder.decode(ErrorModel.self, from: jsonData!)
+            XCTAssertEqual(self.errorModel?.message, "Debe proporcionar un TimeStamp.")
+            XCTAssertEqual(self.errorModel?.code, "FaltaParametro")
+            expectation.fulfill()
+        })
+        waitForExpectations(timeout: 5, handler: nil)
+    }
+    
+    //MARK: Test API Lista de Personajes con parametros validos y respuesta correcta
+    func testPersonajesWithvalidHashParametersReturnsCorrectResponse() {
+        let expectation = self.expectation(description: "validParametes")
+        let ts = String(Int(Date().timeIntervalSinceNow))
+        
+        let hash = MD5(data:"\(ts)\(privateKey)\(publicKey)")
+        let url = "\(baseURL)characters?ts=\(ts)&apikey=\(publicKey)&hash=\(hash)"
+        APIManager.init().fetchPersonajes(urltest: url, testActive: true, completion: { personajesData, jsonData, error in
+            let jsonDecoder = JSONDecoder()
+            self.testModel = try? jsonDecoder.decode(APIPersonajesResultado.self, from: jsonData!)
+            XCTAssertNotNil(self.testModel?.data.results)
+            XCTAssertEqual(self.testModel?.status, "Ok")
+            expectation.fulfill()
+        })
+        waitForExpectations(timeout: 5, handler: nil)
+    }
+    
+    
+    func MD5(data: String)->String{
+        
+        let hash = Insecure.MD5.hash(data: data.data(using: .utf8) ?? Data())
+        return hash.map{
+            String(format: "%02hhx", $0)
         }
+        .joined()
     }
 
 }
