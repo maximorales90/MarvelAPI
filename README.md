@@ -1,5 +1,5 @@
 # MarvelAPI
-MarvelAPI iOS Swift es una aplicación escrita en Swif5 usando los conceptos de la Arquitectura MVC 🚀.
+MarvelAPI iOS Swift es una aplicación escrita en Swift 5 usando los conceptos de la Arquitectura MVC 🚀.
 
 Branch: Master
 La pantalla de Personajes, muestra todos los personajes a través una consulta a la API de Marvel. Luego lista los resultados y cada Personaje puede ir al detalle a través de una WebView. 
