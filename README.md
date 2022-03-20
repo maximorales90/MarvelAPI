@@ -1,7 +1,6 @@
 # MarvelAPI
 MarvelAPI iOS Swift es una aplicación escrita en Swift 5 usando los conceptos de la Arquitectura MVC 🚀.
 
-Branch: Master
 La pantalla de Personajes, muestra todos los personajes a través una consulta a la API de Marvel. Luego lista los resultados y cada Personaje puede ir al detalle a través de una WebView. 
 
 ## Requerimientos
@@ -9,6 +8,13 @@ La pantalla de Personajes, muestra todos los personajes a través una consulta a
 - Swift 5.0+
 - Xcode 13.0+
 - iOS 14.0+ 
+
+
+## ScreenShots 
+
+| Launch Screen | Personajes | Detalle |
+| :-: | :-: | :-: |
+| <img src="Assets/splash.png"/> | <img src="Assets/personajes.png"/> | <img src="Assets/detalle.png"/> | 
 
 
 ## Librerias Usadas
