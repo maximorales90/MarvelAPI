@@ -8,13 +8,12 @@ import Foundation
 import UIKit
 
 class PersonajesViewController: UIViewController, UITableViewDelegate {
-        
+    
     var homeData = APIManager()
     var personajes = [Personajes]()
     var viewModels = [PersonsajesCellViewModel]()
     var personajeURL : URL!
-
-    
+       
     let tableView: UITableView = {
         let table = UITableView()
         table.register(PersonajesCell.self, forCellReuseIdentifier: PersonajesCell.identifier)
@@ -30,32 +29,20 @@ class PersonajesViewController: UIViewController, UITableViewDelegate {
         tableView.separatorStyle = .none
         view.backgroundColor = .systemBackground
         
-        APIManager.shared.fetchPersonajes{ [weak self] result in
-            switch result {
-            case .success(let personajes):
-                self?.personajes = personajes
-                self?.viewModels = personajes.map({
-                    PersonsajesCellViewModel(
+        homeData.fetchPersonajes(urltest: "", testActive: false, completion: {personajesData, jsonData, error in
+            self.personajes = personajesData
+            self.viewModels = self.personajes.map({
+                PersonsajesCellViewModel(
                         title: $0.name,
                         subtitle: $0.description,
-                        imageURL: APIManager.shared.extractImage(data: $0.thumbnail)
-                        )
-                })
+                        imageURL: self.homeData.extractImage(data: $0.thumbnail)
+                )
+            })
                 DispatchQueue.main.async {
-                    self?.tableView.reloadData()
+                    self.tableView.reloadData()
                 }
-            case .failure(let error):
-                print(error)
-            }
-            
-        }
-        print(APIManager.shared.fetchedPersonajes)
-        
-        DispatchQueue.main.async {
-            self.tableView.reloadData()
-        }
-        
-    }
+        })
+}
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
@@ -88,7 +75,7 @@ extension PersonajesViewController: UITableViewDataSource {
         tableView.deselectRow(at: indexPath, animated: true)
         let personaje = personajes[indexPath.row]
         for dato in personaje.urls{
-            personajeURL = APIManager.shared.extractURL(data: dato)
+            personajeURL = homeData.extractURL(data: dato)
             self.performSegue(withIdentifier: "gotoWebView", sender: self)
             return
         }

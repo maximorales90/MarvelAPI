@@ -10,24 +10,27 @@ import CryptoKit
 import UIKit
 
 class APIManager {
-    
-    static let shared = APIManager()
-    
+        
     var fetchedPersonajes: [Personajes] = []
     var offset: Int = 0
-       
 
-    func fetchPersonajes(completion: @escaping (Result<[Personajes],Error>) -> Void){
+    func fetchPersonajes(urltest : String,testActive: Bool,completion:@escaping (_ personajesData: [Personajes], _ jsonData: Data? , _ error:Error?)->()){
         
-        let ts = String(Date().timeIntervalSince1970)
-        let hash = MD5(data: "\(ts)\(privateKey)\(publicKey)")
-        let url = "https://gateway.marvel.com:443/v1/public/characters?limit=20&offset=\(offset)&ts=\(ts)&apikey=\(publicKey)&hash=\(hash)"
-    
+        let url: String
+        
+        if testActive {
+            url = urltest
+        } else {
+            let ts = String(Date().timeIntervalSince1970)
+            let hash = MD5(data: "\(ts)\(privateKey)\(publicKey)")
+            url = "https://gateway.marvel.com:443/v1/public/characters?limit=20&offset=\(offset)&ts=\(ts)&apikey=\(publicKey)&hash=\(hash)"
+        }
+            
         let task = URLSession(configuration: .default)
         
         task.dataTask(with: URL(string: url)!){ (data, response, err) in
             if let error = err{
-                completion(.failure(error))
+                //completion(nil,error)
                 print(error.localizedDescription)
                 return
             }
@@ -37,12 +40,13 @@ class APIManager {
                 let personajes = try JSONDecoder().decode(APIPersonajesResultado.self, from: APIData)
                 print("Personajes:\(personajes.data.count) ")
                 print(personajes.data.results)
-
-                completion(.success(personajes.data.results))
-                
+                completion(personajes.data.results,APIData,nil)
+                DispatchQueue.main.async {
+                    self.fetchedPersonajes.append(contentsOf: personajes.data.results)
+                }
             }
             catch{
-                completion(.failure(error))
+                //completion(nil,error)
                 print(error.localizedDescription)
                 }
             }

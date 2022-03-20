@@ -23,3 +23,8 @@ struct Personajes: Identifiable,Codable {
     var thumbnail: [String: String]
     var urls: [[String: String]]
 }
+
+struct ErrorModel : Codable {
+    let code : String?
+    let message : String?
+}
