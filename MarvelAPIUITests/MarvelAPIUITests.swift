@@ -40,21 +40,19 @@ class MarvelAPIUITests: XCTestCase {
         tablesQuery/*@START_MENU_TOKEN@*/.cells.containing(.staticText, identifier:"A.I.M.").element.swipeRight()/*[[".cells.containing(.staticText, identifier:\"AIM is a terrorist organization bent on destroying the world.\").element",".swipeUp()",".swipeRight()",".cells.containing(.staticText, identifier:\"A.I.M.\").element"],[[[-1,3,1],[-1,0,1]],[[-1,2],[-1,1]]],[0,0]]@END_MENU_TOKEN@*/
         marvelButton.twoFingerTap()
         
-             
-                
         
         //Podemos agregar UITest para realizar un análisis de la aplicación usando el recording una vez lanzada la APP grabando los movimientos de usuario reproduciendolo hasta encontrar un Bug.
         //Sin embargo, como tenemos 3000 llamadas a la API de Marvel por día al generar este tipo de test se llega rápido a ese número generando demora en la app.
-        //Por ese motivo no se agregaron los test visuales por el límite de llamadas a la API y porque se realizaron 3 aplicaciones.
+        //Por ese motivo se agrego un test visual simples por el límite de llamadas a la API y porque se realizaron 3 aplicaciones.
 
     }
 
-//    func testLaunchPerformance() throws {
-//        if #available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 7.0, *) {
-//            // This measures how long it takes to launch your application.
-//            measure(metrics: [XCTApplicationLaunchMetric()]) {
-//                XCUIApplication().launch()
-//            }
-//        }
-//    }
+    func testLaunchPerformance() throws {
+        if #available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 7.0, *) {
+            // This measures how long it takes to launch your application.
+            measure(metrics: [XCTApplicationLaunchMetric()]) {
+                XCUIApplication().launch()
+            }
+        }
+    }
 }
