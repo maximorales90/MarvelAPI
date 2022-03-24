@@ -24,7 +24,7 @@ class MarvelAPITests: XCTestCase {
     func testPersonajesWithEmptyStringReturnsError() {
         let expectation = self.expectation(description: "emptyString")
         let url = "\(baseURL)characters?ts=&apikey=&hash="
-        APIManager.init().fetchPersonajes(urltest: url, testActive: true, completion: { personajesData, jsonData, error in
+        APIManager.init().fetchPersonajes(urltest: url, testActive: true, paginacion: false, completion: { personajesData, jsonData, error in
             let jsonDecoder = JSONDecoder()
             self.errorModel = try? jsonDecoder.decode(ErrorModel.self, from: jsonData!)
             XCTAssertEqual(self.errorModel?.message, "The passed API key is invalid.")
@@ -38,7 +38,7 @@ class MarvelAPITests: XCTestCase {
     func testPersonajesWithInvalidHashParametersReturnsError() {
         let expectation = self.expectation(description: "invalid")
         let url = "\(baseURL)characters?ts=22222&apikey=asdasldjlakjfqakhdqdq344r"
-        APIManager.init().fetchPersonajes(urltest: url, testActive: true, completion: { personajesData, jsonData, error in
+        APIManager.init().fetchPersonajes(urltest: url, testActive: true, paginacion: false, completion: { personajesData, jsonData, error in
             let jsonDecoder = JSONDecoder()
             self.errorModel = try? jsonDecoder.decode(ErrorModel.self, from: jsonData!)
             XCTAssertEqual(self.errorModel?.message, "The passed API key is invalid.")
@@ -54,7 +54,7 @@ class MarvelAPITests: XCTestCase {
         let ts = String(Int(Date().timeIntervalSinceNow))
         let hash = MD5(data: "\(ts)\(privateKey)\(publicKey)")
         let url = "\(baseURL)characters?apikey=\(publicKey)&hash=\(hash)"
-        APIManager.init().fetchPersonajes(urltest: url, testActive: true, completion: { personajesData, jsonData, error in
+        APIManager.init().fetchPersonajes(urltest: url, testActive: true, paginacion: false, completion: { personajesData, jsonData, error in
             let jsonDecoder = JSONDecoder()
             self.errorModel = try? jsonDecoder.decode(ErrorModel.self, from: jsonData!)
             XCTAssertEqual(self.errorModel?.message, "You must provide a timestamp.")
@@ -71,7 +71,7 @@ class MarvelAPITests: XCTestCase {
         
         let hash = MD5(data:"\(ts)\(privateKey)\(publicKey)")
         let url = "\(baseURL)characters?ts=\(ts)&apikey=\(publicKey)&hash=\(hash)"
-        APIManager.init().fetchPersonajes(urltest: url, testActive: true, completion: { personajesData, jsonData, error in
+        APIManager.init().fetchPersonajes(urltest: url, testActive: true, paginacion: false, completion: { personajesData, jsonData, error in
             let jsonDecoder = JSONDecoder()
             self.testModel = try? jsonDecoder.decode(APIPersonajesResultado.self, from: jsonData!)
             XCTAssertNotNil(self.testModel?.data.results)

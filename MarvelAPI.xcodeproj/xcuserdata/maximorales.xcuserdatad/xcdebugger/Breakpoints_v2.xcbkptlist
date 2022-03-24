@@ -124,8 +124,8 @@
             filePath = "MarvelAPI/Controller/PersonajesViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "87"
-            endingLineNumber = "87"
+            startingLineNumber = "127"
+            endingLineNumber = "127"
             landmarkName = "PersonajesViewController"
             landmarkType = "21">
          </BreakpointContent>
@@ -156,9 +156,9 @@
             filePath = "MarvelAPI/Model/APIManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "21"
-            endingLineNumber = "21"
-            landmarkName = "fetchPersonajes(urltest:testActive:completion:)"
+            startingLineNumber = "29"
+            endingLineNumber = "29"
+            landmarkName = "fetchPersonajes(urltest:testActive:paginacion:completion:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

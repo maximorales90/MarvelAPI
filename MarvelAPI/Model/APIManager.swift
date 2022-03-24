@@ -12,11 +12,19 @@ import UIKit
 class APIManager {
         
     var fetchedPersonajes: [Personajes] = []
-    var offset: Int = 0
+    
+    var offset : Int = 0
+    
+    var isPaginacion = false
 
-    func fetchPersonajes(urltest : String,testActive: Bool,completion:@escaping (_ personajesData: [Personajes], _ jsonData: Data? , _ error:Error?)->()){
+    func fetchPersonajes(urltest : String,testActive: Bool,paginacion :Bool,completion:@escaping (_ personajesData: [Personajes], _ jsonData: Data? , _ error:Error?)->()){
         
         var url: String
+        
+        if paginacion {
+            self.isPaginacion = true
+            offset = self.fetchedPersonajes.count
+        }
         
         if testActive {
             url = urltest
@@ -41,6 +49,10 @@ class APIManager {
                 print("Personajes:\(personajes.data.count) ")
                 print(personajes.data.results)
                 completion(personajes.data.results,APIData,nil)
+                
+                if paginacion {
+                    self.isPaginacion = false
+                }
                 DispatchQueue.main.async {
                     self.fetchedPersonajes.append(contentsOf: personajes.data.results)
                 }

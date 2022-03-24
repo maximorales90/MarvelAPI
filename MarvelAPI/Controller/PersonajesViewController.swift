@@ -29,7 +29,7 @@ class PersonajesViewController: UIViewController, UITableViewDelegate {
         tableView.separatorStyle = .none
         view.backgroundColor = .systemBackground
         
-        homeData.fetchPersonajes(urltest: "test", testActive: false, completion: {personajesData, jsonData, error in
+        homeData.fetchPersonajes(urltest: "test", testActive: false, paginacion: false, completion: {personajesData, jsonData, error in
             self.personajes = personajesData
             self.viewModels = self.personajes.map({
                 PersonsajesCellViewModel(
@@ -83,6 +83,46 @@ extension PersonajesViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 162
+    }
+    
+    func createSpinnerFooter() -> UIView {
+        let footerView = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: 100))
+        let spinner = UIActivityIndicatorView()
+        spinner.center = footerView.center
+        footerView.addSubview(spinner)
+        spinner.startAnimating()
+        return footerView
+        
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let position = scrollView.contentOffset.y
+        if position > (tableView.contentSize.height-100-scrollView.frame.size.height){
+            guard !homeData.isPaginacion else {
+                return
+            }
+            self.tableView.tableFooterView = createSpinnerFooter()
+            
+            homeData.fetchPersonajes(urltest: "test", testActive: false, paginacion: true, completion: {personajesData, jsonData, error in
+                print("Obtener mas datos")
+                DispatchQueue.main.async {
+                    self.tableView.tableFooterView = nil
+                }
+                self.personajes.append(contentsOf: personajesData)
+                self.viewModels = self.personajes.map({
+                    PersonsajesCellViewModel(
+                            title: $0.name,
+                            subtitle: $0.description,
+                            imageURL: self.homeData.extractImage(data: $0.thumbnail)
+                    )
+                })
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
+
+            })
+        }
+            
     }
     
 }
