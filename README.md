@@ -12,9 +12,9 @@ La pantalla de Personajes, muestra todos los personajes a través una consulta a
 
 ## ScreenShots 
 
-| Launch Screen | Personajes | Detalle |
-| :-: | :-: | :-: |
-| <img src="Assets/splash.png"/> | <img src="Assets/personajes.png"/> | <img src="Assets/detalle.png"/> | 
+| Personajes | Detalle |
+| :-: | :-: |
+| <img src="Assets/personajes.png"/> | <img src="Assets/detalle.png"/> | 
 
 
 ## Librerias Usadas
