@@ -12,7 +12,7 @@ La pantalla de Personajes, muestra todos los personajes a través una consulta a
 
 ## ScreenShots 
 
-| Personajes | Detalle |
+| Marvel | Marvel |
 | :-: | :-: |
 | <img src="Assets/personajes.png"/> | <img src="Assets/detalle.png"/> | 
 
